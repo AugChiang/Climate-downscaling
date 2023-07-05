@@ -15,4 +15,4 @@ Open "main.py" to modify your training data paths and other configurations
 ## Showcase
 Prediction on the date in 2019.03.25:
 
-[!image](https://github.com/AugChiang/Climate-downscaling/blob/main/Example_20190325.png)
+![image](https://github.com/AugChiang/Climate-downscaling/blob/main/Example_20190325.png)

@@ -42,7 +42,7 @@ UPSAMPLE = config['model']['upsample']
 
 BATCH_SIZE = config['training'].getint('batch_size')
 EPOCHS = config['training'].getint('epochs')
-SAVE_AT_EPOCH = config['training'].getint('save_pred_every_epoch')
+SAVE_EVERY_EPOCH = config['training'].getint('save_pred_every_epoch')
 SEED = config['training'].getint('random_seed')
 patience = config['training'].getint('patience')
 lr = config['training'].getfloat('learning_rate')
@@ -103,4 +103,4 @@ train = Train(model = model, save_folder_name = SaveName,
 train.start_train(optimizer=optimizer, loss_fn=loss_fn,
                   train_acc_metric=train_acc_metric,
                   val_acc_metric=val_acc_metric,
-                  epochs=EPOCHS, save_at_epoch=SAVE_AT_EPOCH, patience=patience)
+                  epochs=EPOCHS, save_pred_every_epoch=SAVE_EVERY_EPOCH, patience=patience)

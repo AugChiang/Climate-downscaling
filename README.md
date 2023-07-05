@@ -21,7 +21,7 @@ Direct to the root folder of "main.py," and then just run it. </br>
 The model would be saved in the "save_dir" folder set in config.ini </br>
 
 ### prediction
-After put the inputs one wants to predict into the folder: "pred_inputs," </br>
+After put the inputs you wants to predict into the folder: "pred_inputs," </br>
 just run "pred.py" and the results will be saved in the folder: "pred_results" </br>
 Notice that the paths of inputs and outputs of predictions are also defined in "config.ini"
 

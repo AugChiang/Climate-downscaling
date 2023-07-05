@@ -47,8 +47,6 @@ SEED = config['training'].getint('random_seed')
 patience = config['training'].getint('patience')
 lr = config['training'].getfloat('learning_rate')
 
-# save folder name
-SaveName = f'MyModel_{x_n}_{x_m}'
 
 ########################################## Metrics/Loss ###########################################
 loss_fn = tf.keras.losses.MeanSquaredError()
@@ -61,6 +59,7 @@ x_train_path = config['path']['x_training_path']
 y_train_path = config['path']['y_training_path']
 x_ele_path = config['path']['topo_path']
 inter_eg = x_train_path + config['path']['gradcam_path']
+SaveName = config['path']['results']
 auxtrpath = None
 auxtags = None
 

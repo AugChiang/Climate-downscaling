@@ -35,14 +35,14 @@ class Train():
         return True
 
     def start_train(self, optimizer, loss_fn, train_acc_metric, val_acc_metric,
-                    epochs:int, save_at_epoch=50, patience=40, lr_scheduler=False):
+                    epochs:int, save_pred_every_epoch=50, patience=40, lr_scheduler=False):
         '''
         # Input
             optimizer: tf.keras.optimizers class, defined in YourModel.py
             loss_fn: tf.keras.losses class, defined in YourModel.py
             train_acc_metric:  tf.keras.metrics class , defined in YourModel.py
             val_acc_metric: tf.keras.metrics class, defined in YourModel.py
-            save_at_epoch: the number of epochs during training
+            save_pred_every_epoch: the number of epochs during training
                             for saving the intermediate prediction
                             based on self.grad_cam defined by yourself.
             patience: the early stopping setting.
@@ -118,7 +118,7 @@ class Train():
                     "\n, time: ", "{:.4f}".format(float(time.time() - start_time)), " s.")
 
             # save the intermediate output
-            if(num_epochs % save_at_epoch == 0):
+            if(num_epochs % save_pred_every_epoch == 0):
                 # save the output during training
                 inter_output_by_epoch = self.model.predict(self.grad_cam)
                 np.save(self.grad_cam_folder + f"/pred_epoch{num_epochs}", inter_output_by_epoch)

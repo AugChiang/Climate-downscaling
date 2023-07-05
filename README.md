@@ -15,3 +15,7 @@ Open "main.py" to modify your training data paths and other configurations
 ## Showcase
 Prediction on the date in 2019.03.25: </br>
 ![image](https://github.com/AugChiang/Climate-downscaling/blob/main/Example_20190325.png)
+
+## Environment
+python == 3.10.3
+tensorflow == 2.12.0

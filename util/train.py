@@ -19,14 +19,14 @@ class wL2(tf.keras.losses.Loss):
 
 # training
 class Train():
-    def __init__(self, model, ModelType:str, x_n:int, x_m:int, dataset, grad_cam) -> None:
+    def __init__(self, model, save_folder_name:str, x_n:int, x_m:int, dataset, grad_cam) -> None:
        self.model = model
-       self.ModelType = ModelType
+       self.save_folder_name = save_folder_name
        self.x_n = x_n
        self.x_m = x_m
        self.dataset = dataset
        self.grad_cam = grad_cam
-       self.dir_name = f"{ModelType}_{x_n}x{x_m}"
+       self.dir_name = f"{save_folder_name}_{x_n}x{x_m}"
        self.grad_cam_folder = self.dir_name + "/pred_epoch"
 
     def create_dirs(self):
@@ -147,3 +147,6 @@ class Train():
         np.save(self.dir_name + "/time_history.npy", time_history)
         # np.save(self.dir_name + "/lr.npy", lr)
         print("Saving Complete ... ")
+
+if __name__ == '__main__' :
+    print("Test Module OK.")

@@ -3,7 +3,7 @@ from tensorflow.keras.layers import MaxPool2D, Dense, Dropout
 from tensorflow.keras.models import Sequential
 import tensorflow as tf
 import math
-import MyLayers
+from . import MyLayers
 #===============================================================================================
 #========================================= MyModel =============================================
 #===============================================================================================
@@ -90,8 +90,8 @@ def MyRDB(n_rdb_block, n_rdb_layers, scale, xn, xm, ch, Upsample='subpixel',
     x = Conv2D(filters=64, kernel_size=(3,3),
                strides= 1, padding='SAME', activation='relu')(x)
     # # Attention Block work on main-stream line of x
-    # x_attention = tf.math.multiply(x, MyLayers.ChAttenBlock(x))
-    # x = x + tf.math.multiply(x_attention, MyLayers.SpAttenBlock(x_attention))
+    # x_attention = tf.math.multiply(x, ChAttenBlock(x))
+    # x = x + tf.math.multiply(x_attention, SpAttenBlock(x_attention))
     # # reduce paramter
     x_attention = Conv2D(filters=1, kernel_size=(3,3),
                          strides=1, padding='SAME', activation='relu')(x)
@@ -103,8 +103,8 @@ def MyRDB(n_rdb_block, n_rdb_layers, scale, xn, xm, ch, Upsample='subpixel',
                                filters=64, size=(3,3), strides=1)
         
         # # Attention Block work on main-stream line of x
-        # x_attention = tf.math.multiply(x, MyLayers.ChAttenBlock(x))
-        # x = x + tf.math.multiply(x_attention, MyLayers.SpAttenBlock(x_attention))
+        # x_attention = tf.math.multiply(x, ChAttenBlock(x))
+        # x = x + tf.math.multiply(x_attention, SpAttenBlock(x_attention))
 
         # # reduce paramter and extract
         x_attention = Conv2D(filters=1, kernel_size=(3,3),
@@ -159,8 +159,8 @@ def MyRDB_RAB(n_rdb_block, n_rdb_layers, scale, xn, xm, ch, Upsample='subpixel',
     x = Conv2D(filters=64, kernel_size=(3,3),
                strides= 1, padding='SAME', activation='relu')(x)
     # # Attention Block work on main-stream line of x
-    # x_attention = tf.math.multiply(x, MyLayers.ChAttenBlock(x))
-    # x = x + tf.math.multiply(x_attention, MyLayers.SpAttenBlock(x_attention))
+    # x_attention = tf.math.multiply(x, ChAttenBlock(x))
+    # x = x + tf.math.multiply(x_attention, SpAttenBlock(x_attention))
     # # reduce paramter
     x_attention = Conv2D(filters=1, kernel_size=(3,3),
                          strides=1, padding='SAME', activation='relu')(x)
@@ -258,9 +258,9 @@ def NoConvAfterUpscale(n_layers, scale, xn, xm, ch, aux=None, use_elevation = Tr
     x = x + x0
     x = Activation('relu')(x)
 
-    # upsampling_layer = MyLayers.CreateUpsample(scale=scale)
+    # upsampling_layer = CreateUpsample(scale=scale)
     upsampling_layer = MyLayers.CreateDeconvUpsample(size=(5,5), scale=scale)
-    # conv2 = MyLayers.CreateConv(filters = 64, size=(3,3))
+    # conv2 = CreateConv(filters = 64, size=(3,3))
     aux_layer = MyLayers.CreateAuxConcat()
     x = upsampling_layer(x)
     # x = conv2(x)
@@ -306,8 +306,8 @@ def NoAtten(n_layers, scale, xn, xm, ch, extract_every_n_layer=2, Upsample='subp
         x = conv_layers[i](x)
         if(i % extract_every_n_layer == 0):
             # Attention Block work on main-stream line of x
-            # x_attention = tf.math.multiply(x, MyLayers.ChAttenBlock(x))
-            # x = x + tf.math.multiply(x_attention, MyLayers.SpAttenBlock(x_attention))
+            # x_attention = tf.math.multiply(x, ChAttenBlock(x))
+            # x = x + tf.math.multiply(x_attention, SpAttenBlock(x_attention))
             conv = MyLayers.CreateConv(filters = 1, size=(3,3), apply_batchnorm=BatchNorm) # reduce # of parameters
             x_attention = conv(x)
             attention_map.append(x_attention)
@@ -447,7 +447,7 @@ def NoCAB(n_layers, scale, xn, xm, ch, extract_every_n_layer=2, Upsample='subpix
         x = conv_layers[i](x)
         if(i % extract_every_n_layer == 0):
             # Attention Block work on main-stream line of x
-            # x_attention = tf.math.multiply(x, MyLayers.ChAttenBlock(x))
+            # x_attention = tf.math.multiply(x, ChAttenBlock(x))
             x = x + tf.math.multiply(x, MyLayers.SpAttenBlock(x))
             conv = MyLayers.CreateConv(filters = 1, size=(3,3), apply_batchnorm=BatchNorm) # reduce # of parameters
             x_attention = conv(x)
@@ -658,3 +658,6 @@ def VGG(xn, xm, n_class=1):
     x = classifier(x)
 
     return tf.keras.Model(inputs=x0, outputs=x)
+
+if __name__ == '__main__' :
+    print("Test Module OK.")

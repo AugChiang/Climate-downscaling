@@ -304,3 +304,6 @@ class MyDataset():
                 output_shapes = (self.xpatch_size))
         val_dataset = val_dataset.batch(self.batch_size) # 4D
         return val_dataset
+
+if __name__ == '__main__' :
+    print("Test Module OK.")

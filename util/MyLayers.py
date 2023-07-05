@@ -2,7 +2,6 @@ from tensorflow.keras.layers import Conv2D, Conv2DTranspose, Concatenate, UpSamp
 from tensorflow.keras.layers import GlobalMaxPool2D, GlobalAveragePooling2D, MaxPool2D, Dense, Dropout, Lambda, Add
 from tensorflow.keras.models import Sequential
 import tensorflow as tf
-import math
 
 def CreateConv(filters=64, size=(3,3), strides=1, apply_batchnorm=False):
     # initializer = tf.random_normal_initializer(0., 0.02)
@@ -141,4 +140,4 @@ def SpAttenBlock(input_x:tf.Tensor, ksize=5)-> tf.Tensor:
     return res
 
 if __name__ == "__main__":
-    print("MyLayers module run directly...")
+    print("Test Module OK.")

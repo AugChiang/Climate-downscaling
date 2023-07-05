@@ -10,7 +10,18 @@ Input: ERA5 Reanalysis Data </br>
 Ground Truth: TCCIP Observations </br>
 
 ## Usage
-Open "main.py" to modify your training data paths and other configurations
+### setting
+Set your own parameters in "config.ini" </br>
+Put your training dataset in the folder: "training_dataset," which provides '.npy' files </br>
+Similarly, put your ground truth dataset in the folder: "ground_truth," which is also '.npy' files </br>
+The file names of training data pieces and its corresponding ground truth pieces in default are set to be "tp_{yyyymmdd}.npy" and "{yyyymmdd}.npy," respectively </br>
+
+### training
+Direct to the root folder of "main.py," and then just run it. </br>
+The model would be saved in the "save_dir" folder set in config.ini </br>
+
+### prediction
+TBD
 
 ## Showcase
 Prediction on the date in 2019.03.25: </br>
@@ -18,4 +29,5 @@ Prediction on the date in 2019.03.25: </br>
 
 ## Environment
 python == 3.10.3 </br>
-tensorflow == 2.12.0
+tensorflow == 2.12.0 </br>
+(tested on 2023.07.05)

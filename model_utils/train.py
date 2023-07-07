@@ -26,11 +26,10 @@ class Train():
        self.x_m = x_m
        self.dataset = dataset
        self.grad_cam = grad_cam
-       self.dir_name = f"{save_folder_name}_{x_n}x{x_m}"
-       self.grad_cam_folder = self.dir_name + "/pred_epoch"
+       self.grad_cam_folder = os.path.join(self.save_folder_name, 'pred_epoch')
 
     def create_dirs(self):
-        if os.path.exists(self.dir_name) is not True: os.mkdir(self.dir_name)
+        if os.path.exists(self.save_folder_name) is not True: os.mkdir(self.save_folder_name)
         if os.path.exists(self.grad_cam_folder) is not True: os.mkdir(self.grad_cam_folder)
         return True
 
@@ -136,16 +135,16 @@ class Train():
 
         print("Saving ...")
         # save the weights of the model layers
-        self.model.save_weights(self.dir_name + f"/variables")
+        self.model.save_weights(self.save_folder_name + f"/variables")
         # save losses
         loss_plot = np.array(training_metrics)
         val_loss_plot = np.array(val_metrics)
         time_history = np.array(time_history)
         # lr = np.array(lr)
-        np.save(self.dir_name + "/losses.npy", loss_plot)
-        np.save(self.dir_name + "/val_losses.npy", val_loss_plot)
-        np.save(self.dir_name + "/time_history.npy", time_history)
-        # np.save(self.dir_name + "/lr.npy", lr)
+        np.save(os.path.join(self.save_folder_name,  'losses.npy'), loss_plot)
+        np.save(os.path.join(self.save_folder_name, 'val_losses.npy'), val_loss_plot)
+        np.save(os.path.join(self.save_folder_name, 'time_history.npy'), time_history)
+        # np.save(self.save_folder_name + "/lr.npy", lr)
         print("Saving Complete ... ")
 
 if __name__ == '__main__' :

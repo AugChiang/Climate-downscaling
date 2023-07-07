@@ -4,6 +4,8 @@ import random
 from tensorflow import data, reshape
 from tensorflow import image
 import numpy as np
+import configparser
+import os
 
 def Scale01(arr, min=None, max=None):
     '''Min-Max scaler to [0,1]'''
@@ -21,9 +23,9 @@ def ScaleMinus1to1(arr, mean=None):
     max = np.max(arr)
     return (arr-mean)/(max-min)
 
-def GetTopology(topo_path, y_n, y_m, use_01=False, use_log1=False):
+def GetTopology(topo_path, topo_x, topo_y, y_n, y_m, use_01=False, use_log1=False):
     topo = np.load(topo_path)
-    topo = np.reshape(topo, (1,400,240,1))
+    topo = np.reshape(topo, (1, topo_x, topo_y,1))
     topo = image.resize(topo, [y_n, y_m], method=image.ResizeMethod.BICUBIC).numpy()
     topo = np.where(topo<0, 0, topo)
     if(use_log1):
@@ -42,6 +44,7 @@ def GetGradCAM(tp_path, auxtrpath, auxtags, xn=14, xm=9):
         reshaped (4D) and normalized to [0,1] by their min-max value of total data
         for checking resulting prediction during training.
     '''
+
     grad_cam = np.load(tp_path)
     grad_cam = np.log1p(grad_cam)
     grad_cam = Scale01(arr=grad_cam, min=0, max=np.log1p(31.544506))
@@ -104,9 +107,17 @@ class MyDataset():
         self.split = split
         self.use_log1 = use_log1
         self.use_01 = use_01
-        # normalization constant (preprocessed)
-        self.max = {"input":np.log1p(31.544506), "scale2":np.log1p(1341.9022), "scale4":np.log1p(1406.7449),
-                    "scale5":np.log1p(1401.9225), "scale8":np.log1p(1517.90),"scale25":np.log1p(1609.3981)}
+        
+        # normalization constant (preprocessed),
+        # or one can insert any MinMax finder function to fill the 'self.max' dictionary.
+        # or through 'config.ini':
+        #   config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.ini')
+        #   config = configparser.ConfigParser()
+        #   config.read(config_path)
+        #   input_max = config['normalization].getfloat('training_max') ... etc
+        self.max = {"input":np.log1p(31.544506), "scale2":np.log1p(1341.9022),
+                    "scale4":np.log1p(1406.7449), "scale5":np.log1p(1401.9225),
+                    "scale8":np.log1p(1517.90),"scale25":np.log1p(1609.3981)}
 
         self.len = len(self.xtrpath)
     

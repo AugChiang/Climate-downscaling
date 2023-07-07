@@ -19,15 +19,18 @@ def TopoResizeNormLog(h, w, topo):
   return norm_y
 
 # normalize the inputs to be predicted
-def InputNorm(input, use_log1p, use_01):
-    if use_01:
-        input = (input-tr_min) / tr_max
+def InputNorm(input, use_log1p, use_01, tr_max, tr_min):
     if use_log1p:
         input = np.log1p(input)
+        tr_max = np.log1p(tr_max)
+    if use_01:
+        input = (input-tr_min) / tr_max
     return input
 
 # denormalize the prediction
-def PredDenorm(pred, use_log1p, use_01):
+def PredDenorm(pred, use_log1p, use_01, gt_max, gt_min):
+    if use_log1p:
+        gt_max = np.log1p(gt_max)
     if use_01:
         pred = pred*gt_max + gt_min
     if use_log1p:
@@ -80,9 +83,9 @@ for idx, pred_input in enumerate(predInputPath):
     # like (H*W, ch) or (H,W,ch) for each input piece.
     # Or you can adjust the shape for reshaping here.
     pred_input = np.load(pred_input)
-    pred_input = InputNorm(pred_input, use_log1p=use_log1p, use_01=use_01)
+    pred_input = InputNorm(pred_input, use_log1p=use_log1p, use_01=use_01, tr_max=tr_max, tr_min=tr_min)
     pred_input = np.reshape(pred_input, (1,xn,xm,ch))
     pred_output = np.squeeze(model.predict(pred_input))
-    pred_output = PredDenorm(pred_output, use_log1p=use_log1p, use_01=use_01)
+    pred_output = PredDenorm(pred_output, use_log1p=use_log1p, use_01=use_01, gt_max=gt_max, gt_min=gt_min)
     # save as .npy file with the shape of (yn, ym)
     np.save(os.path.join(predOutputPath, f'pred{idx+1}'), pred_output)

@@ -59,7 +59,7 @@ x_train_path = config['path']['x_training_path']
 y_train_path = config['path']['y_training_path']
 x_ele_path = config['path']['topo_path']
 inter_eg = x_train_path + config['path']['gradcam_path']
-SaveName = config['path']['results']
+SaveName = config['path']['save_dir']
 auxtrpath = None
 auxtags = None
 

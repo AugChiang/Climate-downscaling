@@ -23,8 +23,8 @@ loss = MSE
 ##################################### Configuration ############################################
 config = configparser.ConfigParser()
 config.read('config.ini')
-x_n = config['resolution'].getint('x_n') # x-height
-x_m = config['resolution'].getint('x_m') # x-width
+x_n = config['resolution'].getint('input_height') # x-height
+x_m = config['resolution'].getint('input_width') # x-width
 SCALE = config['resolution'].getint('scale') # scaling factor
 ch = config['resolution'].getint('channel') # number of channels
 y_n, y_m = x_n*SCALE, x_m*SCALE # y-height and y-width

@@ -4,6 +4,10 @@ National Taiwan Normal University 110 sememster </br>
 Advisor: Ko Chih Wang </br>
 Author: Chia Hao Chiang </br>
 
+# Model Architecture
+Composed of CBAMs (channel attetnion, spatial attention block), convlutional layers, and upsampling layer (Subpixel manner) </br>
+![image](https://github.com/AugChiang/Climate-downscaling/blob/main/model_arch.PNG)
+
 ## Purpose
 To generate high-resolution precipitation data in Taiwan island </br>
 Input: [ERA5 Reanalysis Data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview) </br>

@@ -18,7 +18,7 @@ Ground Truth: [TCCIP Observations](https://tccip.ncdr.nat.gov.tw/ds_03.aspx) </b
 Set your own parameters in `config.ini` </br>
 Put your training dataset in the folder: `training_dataset/`, which provides `.npy` files </br>
 Similarly, put your ground truth dataset in the folder: `ground_truth/`, which is also `.npy` files </br>
-The file names of training data pieces and its corresponding ground truth pieces by default are set to be `tp_{yyyymmdd}.npy` and `{yyyymmdd}.npy` respectively </br>
+The file names of training data pieces and their corresponding ground truth pieces by default are set to be `tp_{yyyymmdd}.npy` and `{yyyymmdd}.npy` respectively </br>
 
 ### training
 Direct to the root folder of `main.py` and then just run it. </br>

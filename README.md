@@ -35,6 +35,7 @@ Prediction on the date in 2019.03.25: </br>
 ![image](https://github.com/AugChiang/Climate-downscaling/blob/main/Example_20190325.png)
 
 ## Environment
+platform: Windows
 python == 3.10.3 </br>
 tensorflow == 2.12.0 </br>
 (tested on 2023.07.05)

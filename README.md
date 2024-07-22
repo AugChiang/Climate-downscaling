@@ -1,5 +1,6 @@
 # Climate-downscaling
 Deep-learning Based Super-resolution Model in Climate Downscaling of Precipitation Data </br>
+This is the implementation of [Climate Downscaling: A Deep-Learning Based Super-resolution Model of Precipitation Data with Attention Block and Skip Connections](https://arxiv.org/abs/2403.17847) </br>
 National Taiwan Normal University 110 sememster </br>
 Advisor: Ko-Chih Wang </br>
 Author: Chia-Hao Chiang </br>

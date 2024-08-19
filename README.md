@@ -10,7 +10,7 @@ Author: Chia-Hao Chiang
 ## Model Architecture
 Composed of CBAMs (channel attetnion, spatial attention block), convlutional layers, and upsampling layer (Subpixel manner).
 
-![image](https://github.com/AugChiang/Climate-downscaling/blob/main/model_arch.PNG)
+![image](model_arch.PNG)
 
 ## Purpose
 To generate high-resolution precipitation data in Taiwan. Check the links below for more data information:
@@ -40,7 +40,7 @@ The paths of inputs and outputs for inferencing are defined as `pred_input_dir` 
 ## Showcase
 Prediction on the date in 2019.03.25:
 
-![image](https://github.com/AugChiang/Climate-downscaling/blob/main/Example_20190325.png)
+![image](Example_20190325.png)
 
 
 

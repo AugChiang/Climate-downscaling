@@ -81,6 +81,7 @@ Update the `environment.yml` file. Run `$ conda env create -f environment.rml` t
 - tensorflow == 2.15.0
 (tested on 2024.08.19)
 
+Tested on TWCC
 - platform: Windows10
 - python == 3.10.3
 - tensorflow == 2.12.0

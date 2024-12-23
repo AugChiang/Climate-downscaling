@@ -74,7 +74,7 @@ where the loss histories are stored.
 where the model weights are stored when running `main.py` to train your own.
 
 ## Environment
-Update the `environment.yml` file. Run `$ conda env create -f environment.rml` to install the environment (env default name = climate). This may take minutes.
+Update the `environment.yml` file. Run `$ conda env create -f environment.yml` to install the environment (env default name = climate). This may take minutes.
 
 - platform: Windows11
 - python == 3.9.19

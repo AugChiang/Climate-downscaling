@@ -1,3 +1,5 @@
+
+
 # Deep-learning Based Climate Downscaling
 Deep-learning Based Super-resolution Model in Climate Downscaling of Precipitation Data: this is the source code of [Climate Downscaling: A Deep-Learning Based Super-resolution Model of Precipitation Data with Attention Block and Skip Connections](https://arxiv.org/abs/2403.17847).
 
@@ -33,8 +35,8 @@ Direct to the root folder of `main.py` and then just run it: `$ python main.py`.
 The model would be saved in the `model_save_dir` set in `config.ini`, by default, at `weights/`.
 
 ### prediction
-After put the inputs you want to predict into the folder: `pred_inputs/`
-just run `pred.py`: `$ python pred.py`. The results will be saved in the folder: `pred_results`.
+After put the inputs you want to predict into the folder: `pred_input/`
+just run `pred.py`: `$ python pred.py`. The results will be saved in the folder: `pretrained_results/`.
 The paths of inputs and outputs for inferencing are defined as `pred_input_dir` and `pred_save_dir` in `config.ini`
 
 ## Showcase
